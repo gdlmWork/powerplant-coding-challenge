@@ -3,7 +3,9 @@ using System.Web.Http;
 
 namespace PowerplantAPI.Controllers
 {
-    public class PowerplantController : ApiController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PowerplantController : ControllerBase
     {
 
     }
