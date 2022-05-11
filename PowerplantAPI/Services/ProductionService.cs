@@ -11,13 +11,19 @@ namespace PowerplantAPI.Services
             List<Powerplant> powerplants = payload.Powerplants;
             List<ProductionPlan> productionPlans = new List<ProductionPlan>();
 
+            // First we order by windturbines because the generate power at 'zero' cost.
+            // Then we order on Costratio for the remaining powerplants with cheapest option first.
             foreach (var powerplant in powerplants.OrderByDescending(p => p.Type == "windturbine").ThenByDescending(p => p.GetCostRatio(fuels)))
             {
                 if (loadRequired > 0)
                 {
                     if (powerplant.Type != "windturbine")
                     {
-                        if (powerplant.Pmax < loadRequired)
+                        // If the remaining load needed is bigger than or equal to the max power production of the powerplant
+                        // we operate this powerplant at max power.
+                        // But when the remaining load is less than the min power production of the plant, we need to skip
+                        // and use the next plant (always considering costs) that can generate the needed power.
+                        if (powerplant.Pmax <= loadRequired)
                         {
                             loadRequired -= powerplant.Pmax;
                             productionPlans.Add(new ProductionPlan(powerplant.Name, powerplant.Pmax));
