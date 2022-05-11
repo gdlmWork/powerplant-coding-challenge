@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dTi8H67pgnxolT0+YWdPoGw9J1DTVqu9KRM4yB6Y5l+J+xk0qtXDLgAuNuVV033WOjRILw2yMdhGSCO4dej8vg==",
+  "dgSpecHash": "wC82u+6vVZnZXgarJjROmzHex7ABvo5sQ2HaFNw+x8iQ/HnHEd7CO2ivVh8VyEwR3qlMcZWw/+t5FvOJBTL+/g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI\\PowerplantAPI.csproj",
+  "projectFilePath": "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GLDELAMA\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\GLDELAMA\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

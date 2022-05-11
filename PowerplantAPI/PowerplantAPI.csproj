@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <Compile Remove="PowerplantAPI\**" />
+    <Content Remove="PowerplantAPI\**" />
+    <EmbeddedResource Remove="PowerplantAPI\**" />
+    <None Remove="PowerplantAPI\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
 </Project>

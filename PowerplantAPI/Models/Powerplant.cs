@@ -7,20 +7,23 @@ namespace PowerplantAPI.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        [EnumDataType(typeof(PowerplantType))]
-        public PowerplantType Type { get; set; }
+        public string Type { get; set; }
         [Required]
-        public decimal Efficiency { get; set; }
+        public double Efficiency { get; set; }
         [Required]
-        public decimal Pmin { get; set; }
+        public double Pmin { get; set; }
         [Required]
-        public decimal Pmax { get; set; }
+        public double Pmax { get; set; }
 
-
-    }
-
-    public enum PowerplantType
-    {
-        gasfired, turbojet, windturbine
+        public double GetCostRatio(Fuels fuels)
+        {
+            double costratio = 0;
+            switch (this.Type)
+            {
+                case "gasfired": costratio = fuels.Gas * Efficiency * Pmax; break;
+                case "turbojet": costratio = fuels.Kerosine * Efficiency * Pmax; break;
+            }
+            return costratio;
+        }
     }
 }

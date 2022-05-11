@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI\\PowerplantAPI.csproj": {}
+    "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI\\PowerplantAPI.csproj": {
+    "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI\\PowerplantAPI.csproj",
+        "projectUniqueName": "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI.csproj",
         "projectName": "PowerplantAPI",
-        "projectPath": "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI\\PowerplantAPI.csproj",
+        "projectPath": "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI.csproj",
         "packagesPath": "C:\\Users\\GLDELAMA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\PowerplantAPI\\obj\\",
+        "outputPath": "C:\\Users\\GLDELAMA\\source\\repos\\PowerplantChallenge\\powerplant-coding-challenge\\PowerplantAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\GLDELAMA\\AppData\\Roaming\\NuGet\\NuGet.Config",
