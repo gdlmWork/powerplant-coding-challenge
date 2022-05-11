@@ -4,7 +4,7 @@ namespace PowerplantAPI.Services
 {
     public class ProductionService : IProductionService
     {
-        public List<ProductionPlan> Calculate(Payload payload)
+        public List<ProductionPlan> CalculateUnit(Payload payload)
         {
             double loadRequired = payload.Load;
             Fuels fuels = payload.Fuels;

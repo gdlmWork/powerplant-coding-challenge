@@ -17,8 +17,18 @@ namespace PowerplantAPI.Controllers
         [HttpPost]
         public IActionResult Generate(Payload payload)
         {
-            List<ProductionPlan> productionplans = productionService.Calculate(payload);
-            return Ok(productionplans);
+            try
+            {
+                List<ProductionPlan> productionplans = productionService.CalculateUnit(payload);
+                if (productionplans != null)
+                    return Ok(productionplans);
+                else
+                    throw new Exception("Couldn't calculate the energy amount!");
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
