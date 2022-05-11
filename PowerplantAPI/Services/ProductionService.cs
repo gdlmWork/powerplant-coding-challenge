@@ -11,7 +11,7 @@ namespace PowerplantAPI.Services
             List<Powerplant> powerplants = payload.Powerplants;
             List<ProductionPlan> productionPlans = new List<ProductionPlan>();
 
-            foreach (var powerplant in powerplants.OrderBy(p => p.GetCostRatio(fuels)).ThenBy(p => p.Type == "windturbine"))
+            foreach (var powerplant in powerplants.OrderByDescending(p => p.Type == "windturbine").ThenByDescending(p => p.GetCostRatio(fuels)))
             {
                 if (loadRequired > 0)
                 {
@@ -34,7 +34,7 @@ namespace PowerplantAPI.Services
                     }
                     else
                     {
-                        double windpower = powerplant.Pmax * powerplant.Efficiency * (fuels.Wind / 100); 
+                        double windpower = powerplant.Pmax * (fuels.Wind / 100); 
                         if (windpower < loadRequired)
                         {
                             loadRequired -= windpower;
@@ -42,7 +42,7 @@ namespace PowerplantAPI.Services
                         }
                         else
                         {
-                            double rest = (loadRequired / powerplant.Efficiency) / (fuels.Wind / 100);
+                            double rest = loadRequired / (fuels.Wind / 100);
                             loadRequired -= windpower;
                             productionPlans.Add(new ProductionPlan(powerplant.Name, rest));
                         }

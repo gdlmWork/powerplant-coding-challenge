@@ -5,11 +5,11 @@ using PowerplantAPI.Services;
 namespace PowerplantAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class PowerplantController : ControllerBase
+    [Route("productionplan")]
+    public class ProductionplanController : ControllerBase
     {
         private IProductionService productionService;
-        public PowerplantController(IProductionService productionService)
+        public ProductionplanController(IProductionService productionService)
         {
             this.productionService = productionService;
         }
