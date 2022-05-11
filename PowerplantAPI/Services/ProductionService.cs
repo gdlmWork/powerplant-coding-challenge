@@ -28,7 +28,7 @@ namespace PowerplantAPI.Services
                         }
                         else
                         {
-                            productionPlans.Add(new ProductionPlan(powerplant.Name, loadRequired /*/ powerplant.Efficiency*/));
+                            productionPlans.Add(new ProductionPlan(powerplant.Name, loadRequired));
                             loadRequired = 0;
                         }
                     }
