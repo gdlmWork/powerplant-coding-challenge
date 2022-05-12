@@ -12,7 +12,7 @@ namespace PowerplantAPI.Services
             List<ProductionPlan> productionPlans = new List<ProductionPlan>();
 
             // First we order by windturbines because the generate power at 'zero' cost.
-            // Then we order on Costratio for the remaining powerplants with cheapest option first.
+            // Then we order on the cost ratio for the remaining powerplants with cheapest option first.
             foreach (var powerplant in powerplants.OrderByDescending(p => p.PlantType == PowerType.windturbine).ThenByDescending(p => p.GetCostRatio(fuels)))
             {
                 if (loadRequired > 0)
