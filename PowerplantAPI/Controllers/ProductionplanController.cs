@@ -5,6 +5,7 @@ using PowerplantAPI.Services;
 namespace PowerplantAPI.Controllers
 {
     [ApiController]
+    // Here we define the endpoint to call the API
     [Route("productionplan")]
     public class ProductionplanController : ControllerBase
     {
@@ -14,6 +15,9 @@ namespace PowerplantAPI.Controllers
             this.productionService = productionService;
         }
 
+        // Here we wait for a POST request on the API along with a JSON file which defines the payload.
+        // Based on this file we calculate the desired power production per plant
+        // and we return the outcome in a JSON format.
         [HttpPost]
         public IActionResult Generate(Payload payload)
         {

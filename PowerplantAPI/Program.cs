@@ -8,6 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Adding Service containing the algorithm using Dependency injection. 
 builder.Services.AddScoped<IProductionService, ProductionService>();
 
 var app = builder.Build();

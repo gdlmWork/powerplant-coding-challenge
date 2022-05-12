@@ -15,6 +15,8 @@ namespace PowerplantAPI.Models
         [Required]
         public double Pmax { get; set; }
 
+        // Changing the string input value for Type to an enum of Powertype
+        // for easier validation and compartations in later code.
         public PowerType PlantType
         {
             get
@@ -29,6 +31,8 @@ namespace PowerplantAPI.Models
             }
         }
 
+        // Deciding which PowerType is cheapest, taking efficiency in consideration,
+        // to define the merit-order in ProductionService
         public double GetCostRatio(Fuels fuels)
         {
             double costratio = 0;
