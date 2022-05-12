@@ -11,7 +11,7 @@ namespace PowerplantAPI.Services
             List<Powerplant> powerplants = payload.Powerplants;
             List<ProductionPlan> productionPlans = new List<ProductionPlan>();
 
-            // First we order by windturbines because the generate power at 'zero' cost.
+            // First we order by windturbines because they generate power at 'zero' cost.
             // Then we order on the cost ratio for the remaining powerplants with cheapest option first.
             foreach (var powerplant in powerplants.OrderByDescending(p => p.PlantType == PowerType.windturbine).ThenByDescending(p => p.GetCostRatio(fuels)))
             {
@@ -34,7 +34,7 @@ namespace PowerplantAPI.Services
                         }
                         else
                         {
-                            productionPlans.Add(new ProductionPlan(powerplant.Name, loadRequired));
+                            productionPlans.Add(new ProductionPlan(powerplant.Name, Math.Round(loadRequired, 2)));
                             loadRequired = 0;
                         }
                     }
@@ -44,13 +44,13 @@ namespace PowerplantAPI.Services
                         if (windpower < loadRequired)
                         {
                             loadRequired -= windpower;
-                            productionPlans.Add(new ProductionPlan(powerplant.Name, windpower));
+                            productionPlans.Add(new ProductionPlan(powerplant.Name, Math.Round(windpower, 2)));
                         }
                         else
                         {
                             double rest = loadRequired / (fuels.Wind / 100);
                             loadRequired -= windpower;
-                            productionPlans.Add(new ProductionPlan(powerplant.Name, rest));
+                            productionPlans.Add(new ProductionPlan(powerplant.Name, Math.Round(rest, 2)));
                         }
                     }
 
