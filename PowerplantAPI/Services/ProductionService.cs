@@ -13,11 +13,11 @@ namespace PowerplantAPI.Services
 
             // First we order by windturbines because the generate power at 'zero' cost.
             // Then we order on Costratio for the remaining powerplants with cheapest option first.
-            foreach (var powerplant in powerplants.OrderByDescending(p => p.Type == "windturbine").ThenByDescending(p => p.GetCostRatio(fuels)))
+            foreach (var powerplant in powerplants.OrderByDescending(p => p.PlantType == PowerType.windturbine).ThenByDescending(p => p.GetCostRatio(fuels)))
             {
                 if (loadRequired > 0)
                 {
-                    if (powerplant.Type != "windturbine")
+                    if (powerplant.PlantType != PowerType.windturbine)
                     {
                         // If the remaining load needed is bigger than or equal to the max power production of the powerplant
                         // we operate this powerplant at max power.

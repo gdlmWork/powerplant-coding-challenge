@@ -15,13 +15,27 @@ namespace PowerplantAPI.Models
         [Required]
         public double Pmax { get; set; }
 
+        public PowerType PlantType
+        {
+            get
+            {
+                switch (this.Type)
+                {
+                    case "gasfired": return PowerType.gasfired;
+                    case "turbojet": return PowerType.turbojet;
+                    case "windturbine": return PowerType.windturbine;
+                    default: return PowerType.gasfired;
+                }
+            }
+        }
+
         public double GetCostRatio(Fuels fuels)
         {
             double costratio = 0;
-            switch (this.Type)
+            switch (PlantType)
             {
-                case "gasfired": costratio = fuels.Gas * Efficiency * Pmax; break;
-                case "turbojet": costratio = fuels.Kerosine * Efficiency * Pmax; break;
+                case PowerType.gasfired: costratio = fuels.Gas * Efficiency * Pmax; break;
+                case PowerType.turbojet: costratio = fuels.Kerosine * Efficiency * Pmax; break;
             }
             return costratio;
         }
