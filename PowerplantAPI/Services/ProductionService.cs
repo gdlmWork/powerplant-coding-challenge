@@ -9,12 +9,15 @@ namespace PowerplantAPI.Services
             double loadRequired = payload.Load;
             Fuels fuels = payload.Fuels;
             List<Powerplant> powerplants = payload.Powerplants;
-            List<ProductionPlan> productionPlans = new List<ProductionPlan>();
-
             // First we order by windturbines because they generate power at 'zero' cost.
             // Then we order on the cost ratio for the remaining powerplants with cheapest option first.
-            foreach (var powerplant in powerplants.OrderByDescending(p => p.PlantType == PowerType.windturbine).ThenByDescending(p => p.GetCostRatio(fuels)))
+            powerplants = powerplants.OrderByDescending(p => p.PlantType == PowerType.windturbine).ThenByDescending(p => p.GetCostRatio(fuels)).ToList();
+            List <ProductionPlan> productionPlans = new List<ProductionPlan>();
+            int ppNextIndex = 0;
+
+            foreach (var powerplant in powerplants)
             {
+                ppNextIndex++;
                 if (loadRequired > 0)
                 {
                     if (powerplant.PlantType != PowerType.windturbine)
@@ -25,12 +28,20 @@ namespace PowerplantAPI.Services
                         // and use the next plant (always considering costs) that can generate the needed power.
                         if (powerplant.Pmax <= loadRequired)
                         {
-                            loadRequired -= powerplant.Pmax;
-                            productionPlans.Add(new ProductionPlan(powerplant.Name, powerplant.Pmax));
-                        }
-                        else if (loadRequired < powerplant.Pmin)
-                        {
-                            productionPlans.Add(new ProductionPlan(powerplant.Name, 0));
+                            // Compensate the remaining load over multiple plants to make up for the 
+                            // fact that some plants have a min power production.
+                            double tempLoad = loadRequired - powerplant.Pmax;
+                            if ( tempLoad < powerplants[ppNextIndex].Pmin )
+                            {
+                                tempLoad = powerplant.Pmax - (powerplants[ppNextIndex].Pmin - tempLoad);
+                                loadRequired = powerplants[ppNextIndex].Pmin;
+                                productionPlans.Add(new ProductionPlan(powerplant.Name, Math.Round(tempLoad, 2)));
+                            }
+                            else
+                            {
+                                loadRequired = tempLoad;
+                                productionPlans.Add(new ProductionPlan(powerplant.Name, powerplant.Pmax));
+                            }
                         }
                         else
                         {
